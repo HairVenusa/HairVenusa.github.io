@@ -341,6 +341,7 @@ Hair Venusa Wig Shop
         
         .payment-tabs {
             display: flex;
+            flex-wrap: wrap;
             border-bottom: 1px solid #ddd;
             margin-bottom: 20px;
         }
@@ -353,6 +354,7 @@ Hair Venusa Wig Shop
             border-bottom: none;
             border-radius: 4px 4px 0 0;
             margin-right: 5px;
+            margin-bottom: 5px;
         }
         
         .payment-tab.active {
@@ -399,6 +401,7 @@ Hair Venusa Wig Shop
         
         .payment-logo {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -447,6 +450,7 @@ Hair Venusa Wig Shop
                 <h2>Payment Options</h2>
                 <div class="payment-tabs">
                     <div class="payment-tab active" onclick="showPaymentTab('momo')">Mobile Money</div>
+                    <div class="payment-tab" onclick="showPaymentTab('expresspay')">Express Pay</div>
                     <div class="payment-tab" onclick="showPaymentTab('card')">Credit Card</div>
                     <div class="payment-tab" onclick="showPaymentTab('bank')">Bank Transfer</div>
                 </div>
@@ -454,19 +458,32 @@ Hair Venusa Wig Shop
                 <div id="momo" class="payment-content active">
                     <div class="payment-logo">
                         <img src="/api/placeholder/80/40" alt="MTN MoMo">
-                        <img src="/api/placeholder/80/40" alt="Vodafone Cash">
-                        <img src="/api/placeholder/80/40" alt="AirtelTigo Money">
+                        <img src="/api/placeholder/80/40" alt="Telecel Cash">
+                        <img src="/api/placeholder/80/40" alt="AT Money">
                     </div>
                     <p>Pay securely with your mobile money account:</p>
                     <div class="payment-form">
-                        <select>
+                        <select id="momoProvider">
                             <option>Select Provider</option>
                             <option>MTN Mobile Money</option>
-                            <option>Vodafone Cash</option>
-                            <option>AirtelTigo Money</option>
+                            <option>Telecel Cash</option>
+                            <option>AT Money</option>
                         </select>
-                        <input type="tel" placeholder="Enter Mobile Number">
-                        <button>Pay Now</button>
+                        <input type="tel" id="momoNumber" placeholder="Enter Mobile Number">
+                        <button id="momoPayButton">Pay Now</button>
+                    </div>
+                </div>
+                
+                <div id="expresspay" class="payment-content">
+                    <div class="payment-logo">
+                        <img src="/api/placeholder/80/40" alt="Express Pay">
+                    </div>
+                    <p>Pay securely with Express Pay:</p>
+                    <div class="payment-form">
+                        <input type="email" id="expressPayEmail" placeholder="Email Address">
+                        <input type="tel" id="expressPayPhone" placeholder="Phone Number">
+                        <input type="text" id="expressPayName" placeholder="Full Name">
+                        <button id="expressPayButton">Proceed to Express Pay</button>
                     </div>
                 </div>
                 
@@ -696,8 +713,9 @@ Hair Venusa Wig Shop
                     <p>We accept the following payment methods:</p>
                     <div class="payment-methods">
                         <div class="payment-method">MTN Mobile Money</div>
-                        <div class="payment-method">Vodafone Cash</div>
-                        <div class="payment-method">AirtelTigo Money</div>
+                        <div class="payment-method">Telecel Cash</div>
+                        <div class="payment-method">AT Money</div>
+                        <div class="payment-method">Express Pay</div>
                         <div class="payment-method">Credit/Debit Cards</div>
                         <div class="payment-method">Bank Transfer</div>
                     </div>
@@ -741,6 +759,88 @@ Hair Venusa Wig Shop
                 // Here you would typically update cart count and store in session/local storage
             });
         });
-    </script>
-</body>
-</html>
+        
+        // Function to handle Mobile Money payments
+        function processMobileMoneyPayment(provider, phoneNumber, amount) {
+            // This would be replaced with actual API calls to the payment provider
+            const apiEndpoints = {
+                'MTN Mobile Money': 'https://api.mtn.com/payment',
+                'Telecel Cash': 'https://api.telecel.com/payment',
+                'AT Money': 'https://api.atmoney.com/payment'
+            };
+            
+            const endpoint = apiEndpoints[provider];
+            
+            // Example API request structure (this varies by provider)
+            const paymentData = {
+                phoneNumber: phoneNumber,
+                amount: amount,
+                merchantId: 'YOUR_MERCHANT_ID',
+                reference: generateOrderReference(),
+                currency: 'GHS'
+            };
+            
+            // In a real implementation, you would use fetch or axios to make the actual API call
+            console.log(`Processing ${provider} payment for ${phoneNumber} with amount ${amount}`);
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                alert(`${provider} payment initiated! Check your phone for confirmation prompt.`);
+            }, 1500);
+        }
+        
+        // Function to handle Express Pay
+        function processExpressPayPayment(email, phone, name, amount) {
+            // Example Express Pay API call
+            const expressPayData = {
+                email: email,
+                phone: phone,
+                name: name,
+                amount: amount,
+                merchantId: 'YOUR_EXPRESSPAY_MERCHANT_ID',
+                reference: generateOrderReference(),
+                currency: 'GHS',
+                redirectUrl: window.location.origin + '/payment-callback.html'
+            };
+            
+            // Simulate payment processing
+            console.log('Processing Express Pay payment:', expressPayData);
+            
+            setTimeout(() => {
+                alert('Redirecting to Express Pay checkout...');
+                // In a real implementation, you would redirect to Express Pay checkout URL
+            }, 1500);
+        }
+        
+        // Helper function to generate unique order references
+        function generateOrderReference() {
+            return 'HV-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+        }
+        
+        // Function to get current cart total (placeholder)
+        function getCartTotal() {
+            // In a real implementation, this would calculate the total from cart items
+            return 150.00; // Example amount
+        }
+        
+        // Event listeners for payment forms
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Money payment
+            const momoPayButton = document.getElementById('momoPayButton');
+            if (momoPayButton) {
+                momoPayButton.addEventListener('click', function() {
+                    const provider = document.getElementById('momoProvider').value;
+                    const phoneNumber = document.getElementById('momoNumber').value;
+                    
+                    // Validate inputs
+                    if (provider === 'Select Provider') {
+                        alert('Please select a mobile money provider');
+                        return;
+                    }
+                    
+                    if (!phoneNumber || phoneNumber.length < 10) {
+                        alert('Please enter a valid phone number');
+                        return;
+                    }
+                    
+                    const amount = get
