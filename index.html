@@ -5,7 +5,7 @@ Hair Venusa Wig Shop
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Wigs - Premium Quality Wigs</title>
+    <title>Hair Venusa - Premium Quality Wigs</title>
     <style>
         :root {
             --primary-color: #FF69B4;
@@ -324,22 +324,105 @@ Hair Venusa Wig Shop
                 width: 100%;
             }
         }
+        
+        /* Payment methods section */
+        .ghana-payment {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ghana-payment h2 {
+            color: var(--dark-pink);
+            margin-bottom: 20px;
+        }
+        
+        .payment-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .payment-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .payment-tab.active {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--white);
+            margin-bottom: -1px;
+            font-weight: bold;
+        }
+        
+        .payment-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .payment-content.active {
+            display: block;
+        }
+        
+        .payment-form input, 
+        .payment-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .payment-form button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .payment-form button:hover {
+            background-color: var(--dark-pink);
+        }
+        
+        .payment-logo {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-logo img {
+            height: 40px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Glamour Wigs</div>
+                <div class="logo">Hair Venusa</div>
                 <nav>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Categories</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Cart (0)</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="cart.html">Cart (0)</a></li>
                     </ul>
                 </nav>
             </div>
@@ -355,11 +438,73 @@ Hair Venusa Wig Shop
             <div class="hero-content">
                 <h1>Glamorous Wigs for Every Style</h1>
                 <p>Premium quality wigs that transform your look instantly</p>
-                <a href="#" class="btn">Shop Now</a>
+                <a href="shop.html" class="btn">Shop Now</a>
             </div>
         </section>
 
         <div class="container">
+            <section class="ghana-payment">
+                <h2>Payment Options</h2>
+                <div class="payment-tabs">
+                    <div class="payment-tab active" onclick="showPaymentTab('momo')">Mobile Money</div>
+                    <div class="payment-tab" onclick="showPaymentTab('card')">Credit Card</div>
+                    <div class="payment-tab" onclick="showPaymentTab('bank')">Bank Transfer</div>
+                </div>
+                
+                <div id="momo" class="payment-content active">
+                    <div class="payment-logo">
+                        <img src="/api/placeholder/80/40" alt="MTN MoMo">
+                        <img src="/api/placeholder/80/40" alt="Vodafone Cash">
+                        <img src="/api/placeholder/80/40" alt="AirtelTigo Money">
+                    </div>
+                    <p>Pay securely with your mobile money account:</p>
+                    <div class="payment-form">
+                        <select>
+                            <option>Select Provider</option>
+                            <option>MTN Mobile Money</option>
+                            <option>Vodafone Cash</option>
+                            <option>AirtelTigo Money</option>
+                        </select>
+                        <input type="tel" placeholder="Enter Mobile Number">
+                        <button>Pay Now</button>
+                    </div>
+                </div>
+                
+                <div id="card" class="payment-content">
+                    <div class="payment-logo">
+                        <img src="/api/placeholder/80/40" alt="Visa">
+                        <img src="/api/placeholder/80/40" alt="Mastercard">
+                    </div>
+                    <p>Pay with your credit or debit card:</p>
+                    <div class="payment-form">
+                        <input type="text" placeholder="Card Number">
+                        <input type="text" placeholder="Cardholder Name">
+                        <div style="display:flex;gap:10px;">
+                            <input type="text" placeholder="Expiry Date (MM/YY)" style="width:70%;">
+                            <input type="text" placeholder="CVV" style="width:30%;">
+                        </div>
+                        <button>Pay Now</button>
+                    </div>
+                </div>
+                
+                <div id="bank" class="payment-content">
+                    <div class="payment-logo">
+                        <img src="/api/placeholder/80/40" alt="GCB Bank">
+                        <img src="/api/placeholder/80/40" alt="Ecobank">
+                        <img src="/api/placeholder/80/40" alt="Fidelity Bank">
+                    </div>
+                    <p>Pay via bank transfer to our account:</p>
+                    <div class="payment-info">
+                        <p><strong>Bank Name:</strong> Ghana Commercial Bank</p>
+                        <p><strong>Account Name:</strong> Hair Venusa Ltd</p>
+                        <p><strong>Account Number:</strong> 1234567890</p>
+                        <p><strong>Branch:</strong> Accra Main</p>
+                        <p>Please include your order number as reference and upload proof of payment below.</p>
+                        <button>Upload Receipt</button>
+                    </div>
+                </div>
+            </section>
+
             <section class="featured-categories">
                 <h2>Shop by Category</h2>
                 <div class="category-grid">
@@ -369,47 +514,43 @@ Hair Venusa Wig Shop
                         </div>
                         <div class="category-info">
                             <h3>Long Wigs</h3>
-                            <a href="#" class="btn">View All</a>
+                            <a href="category-long.html" class="btn">View All</a>
                         </div>
                     </div>
                     <div class="category-card">
                         <div class="category-img">
-                            <img src="/api/placeholder/250/200" alt="Short wigs">
+                            <img src="Bob Wig.HEIC" alt="Bob wigs">
                         </div>
                         <div class="category-info">
-                            <h3>Short Wigs</h3>
-                            <a href="#" class="btn">View All</a>
+                            <h3>Bob Wigs</h3>
+                            <a href="category-bob.html" class="btn">View All</a>
                         </div>
                     </div>
                     <div class="category-card">
                         <div class="category-img">
-                            <img src="/api/placeholder/250/200" alt="Curly wigs">
+                            <img src="Curly wig.jpg" alt="Curly wigs">
                         </div>
                         <div class="category-info">
                             <h3>Curly Wigs</h3>
-                            <a href="#" class="btn">View All</a>
-                        </div>
-                    </div> 
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="Revampedcurlywig.JPG" alt="Revamped wigs">
-                        </div>
-                        <div class="category-info">
-                            <h3>Revamped Wigs</h3>
-                            <a href="#" class="btn">View All</a>
+                            <a href="category-curly.html" class="btn">View All</a>
                         </div>
                     </div>
                     <div class="category-card">
                         <div class="category-img">
-                            <img src="/api/placeholder/250/200" alt="Colored wigs">
+                            <img src="Revampedcurlywig.JPG" alt="Revamped Wigs">
                         </div>
+                        <div class="category-info">
+                            <h3>Revamped Wigs</h3>
+                            <a href="category-revamp.html" class="btn">View All</a>
+                        </div>
+                    </div>
                     <div class="category-card">
                         <div class="category-img">
                             <img src="/api/placeholder/250/200" alt="Colored wigs">
                         </div>
                         <div class="category-info">
                             <h3>Colored Wigs</h3>
-                            <a href="#" class="btn">View All</a>
+                            <a href="category-colored.html" class="btn">View All</a>
                         </div>
                     </div>
                 </div>
@@ -425,7 +566,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Wavy Blonde Wig</div>
                             <div class="product-price">$129.99</div>
-                            <div class="product-rating">âââââ (42)</div>
+                            <div class="product-rating">★★★★★ (42)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -436,7 +577,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Short Black Bob</div>
                             <div class="product-price">$99.99</div>
-                            <div class="product-rating">âââââ (28)</div>
+                            <div class="product-rating">★★★★☆ (28)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -447,7 +588,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Long Brunette Wig</div>
                             <div class="product-price">$149.99</div>
-                            <div class="product-rating">âââââ (56)</div>
+                            <div class="product-rating">★★★★★ (56)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -458,7 +599,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Curly Red Wig</div>
                             <div class="product-price">$119.99</div>
-                            <div class="product-rating">âââââ (34)</div>
+                            <div class="product-rating">★★★★☆ (34)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -475,7 +616,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Pastel Pink Wig</div>
                             <div class="product-price">$159.99</div>
-                            <div class="product-rating">âââââ (12)</div>
+                            <div class="product-rating">★★★★☆ (12)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -486,7 +627,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Ombre Blue Wig</div>
                             <div class="product-price">$179.99</div>
-                            <div class="product-rating">âââââ (7)</div>
+                            <div class="product-rating">★★★★☆ (7)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -497,7 +638,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Platinum Blonde Wig</div>
                             <div class="product-price">$139.99</div>
-                            <div class="product-rating">âââââ (19)</div>
+                            <div class="product-rating">★★★★★ (19)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -508,7 +649,7 @@ Hair Venusa Wig Shop
                         <div class="product-info">
                             <div class="product-title">Braided Wig</div>
                             <div class="product-price">$189.99</div>
-                            <div class="product-rating">âââââ (23)</div>
+                            <div class="product-rating">★★★★★ (23)</div>
                             <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
@@ -523,31 +664,31 @@ Hair Venusa Wig Shop
                 <div class="footer-column">
                     <h3>Customer Service</h3>
                     <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Shipping & Delivery</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">Track Your Order</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="shipping.html">Shipping & Delivery</a></li>
+                        <li><a href="returns.html">Returns & Exchanges</a></li>
+                        <li><a href="track-order.html">Track Your Order</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Information</h3>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Wig Care Guide</a></li>
-                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="wig-care.html">Wig Care Guide</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>My Account</h3>
                     <ul>
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">Order History</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="signin.html">Sign In</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="orders.html">Order History</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="newsletter.html">Newsletter</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -555,16 +696,51 @@ Hair Venusa Wig Shop
                     <p>We accept the following payment methods:</p>
                     <div class="payment-methods">
                         <div class="payment-method">MTN Mobile Money</div>
-                        <div class="payment-method">Telecel Cash</div>
-                        <div class="payment-method">AT Money</div>
+                        <div class="payment-method">Vodafone Cash</div>
+                        <div class="payment-method">AirtelTigo Money</div>
                         <div class="payment-method">Credit/Debit Cards</div>
+                        <div class="payment-method">Bank Transfer</div>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2025 Glamour Wigs. All Rights Reserved.
+                &copy; 2025 Hair Venusa Ltd. All Rights Reserved.
             </div>
         </div>
     </footer>
+
+    <script>
+        // Function to handle payment tab switching
+        function showPaymentTab(tabId) {
+            // Hide all payment content sections
+            const contents = document.querySelectorAll('.payment-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Deactivate all tabs
+            const tabs = document.querySelectorAll('.payment-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Activate the selected tab and content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Find the tab that was clicked and activate it
+            const clickedTab = document.querySelector(`.payment-tab[onclick="showPaymentTab('${tabId}')"]`);
+            clickedTab.classList.add('active');
+        }
+        
+        // Function to handle add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productTitle = this.parentElement.querySelector('.product-title').textContent;
+                alert(`Added "${productTitle}" to your cart!`);
+                // Here you would typically update cart count and store in session/local storage
+            });
+        });
+    </script>
 </body>
 </html>
